@@ -27,31 +27,46 @@ public class Vector2D {
 
     public void  set(double x, double y){
         // gan cap x, y cho vector dc goi
+        this.x = x ;
+        this.y = y ;
     }
 
     public void add(double x, double y){
         //cong gia tri x, y vao vector dc goi
+        this.x += x ;
+        this.y += y ;
     }
 
     public void minus(double x, double y){
         // tru gia tri x, y vao vector dc goi
+        this.x -= x ;
+        this.y -= y ;
     }
 
     public void scale(double rate){
         // nhan gia tri rate vao vector dc goi
+        this.x *= x ;
+        this.y *= y ;
     }
 
     public double getLength(){
+        double z = Math.hypot(x,y) ;
+
         return 0;// tra ra do dai cua vector dc goi
     }
 
     public double setLength(double length){
         //giu nguyen gia tri huong cua vector dc goi , thay doi do dai = do dai truyen vao
+
+
         return 0;
     }
 
     public double getAngle(){
-        return 0;// tra ra goc tao giua vector vs truv hoanh
+        double z = Math.hypot(x,y) ;
+        double t = x/z;
+        double c = Math.acos(t);
+        return 0;// tra ra goc tao giua vector vs truc hoanh(x,y) vs (1,0)
     }
 
     public void setAngle(double angle){
