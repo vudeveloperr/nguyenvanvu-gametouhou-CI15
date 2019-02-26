@@ -10,13 +10,13 @@ import java.util.ArrayList;
 public class GamePanel extends JPanel {
     Background background;
     Player player;
+    Enemy enemy ;
 
     public GamePanel(){
         background = new Background();
         player = new Player();
-        //bulletPositions.add() //them phan tu vao mang
-//        bulletPositions.get()// lay ra phan tu o vitri cu the
-//        bulletPositions.size()// lay ra kich thuoc cua mang
+        enemy = new Enemy();
+
     }
 
     @Override
@@ -27,6 +27,7 @@ public class GamePanel extends JPanel {
         // draw image
         background.render(g);
         player.render(g);
+        enemy.render(g);
 
     }
 
@@ -34,7 +35,7 @@ public class GamePanel extends JPanel {
 
     public void gameloop(){
         long lasttime = 0 ;
-        long delay = 1000/80 ;
+        long delay = 1000/65 ;
         while(true){
             long currentTime = System.currentTimeMillis();
             if (currentTime - lasttime >= delay){
@@ -56,7 +57,7 @@ public class GamePanel extends JPanel {
     private void runAll() {
         background.run();
         player.run();
-
+        enemy.run();
 
     }
 

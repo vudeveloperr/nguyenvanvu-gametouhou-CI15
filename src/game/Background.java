@@ -20,7 +20,7 @@ public class Background {
     }
     public void run() {
         if (position.y<0) { // background limit
-            position.y += 1;  // background move
+            position.y += 0.5;  // background move
         }
     }
 }
