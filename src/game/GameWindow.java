@@ -12,6 +12,7 @@ public class GameWindow extends JFrame {
     public static boolean isRightPress;
     public static boolean isFirePress;
 
+
     public GameWindow(){
         addKeyListener(new KeyAdapter() {
             @Override

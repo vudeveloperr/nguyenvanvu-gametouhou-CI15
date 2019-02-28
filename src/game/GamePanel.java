@@ -25,9 +25,12 @@ public class GamePanel extends JPanel {
        // BufferedImage image = SpriteUtils.loadImage("assets/images/players/straight/0.png");
 
         // draw image
-        background.render(g);
-        player.render(g);
-        enemy.render(g);
+        for (int i =0 ; i<GameObject.objects.size();i++){
+            GameObject object = GameObject.objects.get(i);
+            if (object.active){
+                object.render(g);
+            }
+        }
 
     }
 
@@ -55,9 +58,12 @@ public class GamePanel extends JPanel {
 
 
     private void runAll() {
-        background.run();
-        player.run();
-        enemy.run();
+        for (int i =0 ; i<GameObject.objects.size();i++){
+            GameObject object = GameObject.objects.get(i);
+            if (object.active){
+                object.run();
+            }
+        }
 
     }
 
