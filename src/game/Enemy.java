@@ -30,12 +30,107 @@ public class Enemy extends GameObject {
 
     private void enemyFire() {
         fireCount++;
-        if (GameWindow.isFirePress && fireCount>10) {
+        if (fireCount>70) {
             for (int i = 0; i < 1; i++) {
                 EnemyBullet bullet1 = new EnemyBullet();
                 bullet1.loadImage();
                 bullet1.position.set(this.position.x, this.position.y);
                 bullet1.velocity.setAngle(Math.PI * 0.5);
+
+                EnemyBullet bullet2 = new EnemyBullet();
+                bullet2.loadImage();
+                bullet2.position.set(this.position.x, this.position.y);
+                bullet2.velocity.setAngle(Math.PI * 0.6);
+
+                EnemyBullet bullet3 = new EnemyBullet();
+                bullet3.loadImage();
+                bullet3.position.set(this.position.x, this.position.y);
+                bullet3.velocity.setAngle(Math.PI * 0.7);
+
+                EnemyBullet bullet4 = new EnemyBullet();
+                bullet4.loadImage();
+                bullet4.position.set(this.position.x, this.position.y);
+                bullet4.velocity.setAngle(Math.PI * 0.8);
+
+                EnemyBullet bullet5 = new EnemyBullet();
+                bullet5.loadImage();
+                bullet5.position.set(this.position.x, this.position.y);
+                bullet5.velocity.setAngle(Math.PI * 0.9);
+
+                EnemyBullet bullet6 = new EnemyBullet();
+                bullet6.loadImage();
+                bullet6.position.set(this.position.x, this.position.y);
+                bullet6.velocity.setAngle(Math.PI * 0);
+
+                EnemyBullet bullet7 = new EnemyBullet();
+                bullet7.loadImage();
+                bullet7.position.set(this.position.x, this.position.y);
+                bullet7.velocity.setAngle(Math.PI * 0.4);
+
+                EnemyBullet bullet8 = new EnemyBullet();
+                bullet8.loadImage();
+                bullet8.position.set(this.position.x, this.position.y);
+                bullet8.velocity.setAngle(Math.PI * 0.3);
+
+                EnemyBullet bullet9 = new EnemyBullet();
+                bullet9.loadImage();
+                bullet9.position.set(this.position.x, this.position.y);
+                bullet9.velocity.setAngle(Math.PI * 0.2);
+
+                EnemyBullet bullet10 = new EnemyBullet();
+                bullet10.loadImage();
+                bullet10.position.set(this.position.x, this.position.y);
+                bullet10.velocity.setAngle(-Math.PI * 0.5);
+
+                EnemyBullet bullet11 = new EnemyBullet();
+                bullet11.loadImage();
+                bullet11.position.set(this.position.x, this.position.y);
+                bullet11.velocity.setAngle(-Math.PI * 0.6);
+
+                EnemyBullet bullet12 = new EnemyBullet();
+                bullet12.loadImage();
+                bullet12.position.set(this.position.x, this.position.y);
+                bullet12.velocity.setAngle(-Math.PI * 0.7);
+
+                EnemyBullet bullet13 = new EnemyBullet();
+                bullet13.loadImage();
+                bullet13.position.set(this.position.x, this.position.y);
+                bullet13.velocity.setAngle(-Math.PI * 0.8);
+
+                EnemyBullet bullet14 = new EnemyBullet();
+                bullet14.loadImage();
+                bullet14.position.set(this.position.x, this.position.y);
+                bullet14.velocity.setAngle(-Math.PI * 0.9);
+
+                EnemyBullet bullet15 = new EnemyBullet();
+                bullet15.loadImage();
+                bullet15.position.set(this.position.x, this.position.y);
+                bullet15.velocity.setAngle(Math.PI );
+
+                EnemyBullet bullet16 = new EnemyBullet();
+                bullet16.loadImage();
+                bullet16.position.set(this.position.x, this.position.y);
+                bullet16.velocity.setAngle(-Math.PI * 0.4);
+
+                EnemyBullet bullet17 = new EnemyBullet();
+                bullet17.loadImage();
+                bullet17.position.set(this.position.x, this.position.y);
+                bullet17.velocity.setAngle(-Math.PI * 0.3);
+
+                EnemyBullet bullet18 = new EnemyBullet();
+                bullet18.loadImage();
+                bullet18.position.set(this.position.x, this.position.y);
+                bullet18.velocity.setAngle(-Math.PI * 0.2);
+
+                EnemyBullet bullet19 = new EnemyBullet();
+                bullet19.loadImage();
+                bullet19.position.set(this.position.x, this.position.y);
+                bullet19.velocity.setAngle(Math.PI * 0.1);
+
+                EnemyBullet bullet20 = new EnemyBullet();
+                bullet20.loadImage();
+                bullet20.position.set(this.position.x, this.position.y);
+                bullet20.velocity.setAngle(-Math.PI * 0.1);
             }
             fireCount = 0;
         }

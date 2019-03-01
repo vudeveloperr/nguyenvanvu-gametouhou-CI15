@@ -13,7 +13,7 @@ public class PlayerBullet extends GameObject {
 
     public PlayerBullet(){
         velocity.set(5,5);
-        //velocity.setLength(Settings.PLA)
+        velocity.setLength(Settings.PLAYER_BULLET_SPEED);
     }
 
     public void loadImageByType(int type) {
