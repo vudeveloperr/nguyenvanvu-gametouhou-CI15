@@ -1,5 +1,7 @@
-package game;
+package game.player;
 
+import game.GameObject;
+import game.Settings;
 import tklibs.SpriteUtils;
 
 import java.awt.*;
@@ -14,6 +16,19 @@ public class PlayerBullet extends GameObject {
     public PlayerBullet(){
         velocity.set(5,5);
         velocity.setLength(Settings.PLAYER_BULLET_SPEED);
+    }
+
+    @Override
+    public void run() {
+        super.run();
+        deactiveIfNeeded();
+    }
+
+    private void deactiveIfNeeded() {
+        if (this.position.y< -30){
+            this.deactive();
+        }
+
     }
 
     public void loadImageByType(int type) {

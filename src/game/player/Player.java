@@ -1,5 +1,8 @@
-package game;
+package game.player;
 
+import game.GameObject;
+import game.GameWindow;
+import game.Settings;
 import tklibs.SpriteUtils;
 
 import java.awt.*;
@@ -7,14 +10,24 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Player extends GameObject{
+public class Player extends GameObject {
     int fireCount;
     int bulletType;
     int changeBulletCount;
     Random random;
 
     public Player(){
-        image = SpriteUtils.loadImage("assets/images/players/straight/3.png");
+        //image = SpriteUtils.loadImage("assets/images/players/straight/3.png");
+
+        images = new ArrayList<>();
+        images.add(SpriteUtils.loadImage("assets/images/players/straight/0.png"));
+        images.add(SpriteUtils.loadImage("assets/images/players/straight/1.png"));
+        images.add(SpriteUtils.loadImage("assets/images/players/straight/2.png"));
+        images.add(SpriteUtils.loadImage("assets/images/players/straight/3.png"));
+        images.add(SpriteUtils.loadImage("assets/images/players/straight/4.png"));
+        images.add(SpriteUtils.loadImage("assets/images/players/straight/5.png"));
+        images.add(SpriteUtils.loadImage("assets/images/players/straight/6.png"));
+
         position.set(200,500);
         fireCount =0;
         bulletType = 1;
@@ -72,7 +85,8 @@ public class Player extends GameObject{
         fireCount+=4;
         if (GameWindow.isFirePress && fireCount > Settings.DURATION_FIRE_BULLET){
             for (int i = 0; i < 1; i++) {
-                PlayerBullet bullet = new PlayerBullet();
+                //PlayerBullet bullet = new PlayerBullet();
+                PlayerBullet bullet = GameObject.recycle(PlayerBullet.class);
                 bullet.loadImageByType(bulletType);
                 bullet.position.set(this.position.x, this.position.y);
                 bullet.velocity.setAngle(-Math.PI * 0.5);
