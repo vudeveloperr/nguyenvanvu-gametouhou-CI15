@@ -17,40 +17,71 @@ public class Rectangle {
         this.height = height;
     }
 
+    public double top(){
+        return this.position.y;
+    }
+
+    public  double bot(){
+        return this.top() + this.height;
+    }
+
+    public double left(){
+        return this.position.x;
+    }
+
+    public double right(){
+        return this.left() + this.width;
+    }
+
+
     /**
      * @param other
-     * @return true: nếu hcn được gọi (this) có phần giao với hcn truyền vào (other)
      * @return false: nếu 2 hcn khong giao nhau
      */
     public boolean intersects(Rectangle other) {
         // TODO: 1. Triển khai phần code kiểm tra va chạm giữa 2 () ở đây
-        double x1 = this.position.x;
-        double y1 = this.position.y;
-        double x2 = other.position.x;
-        double y2 = other.position.y;
 
-        if ( ((x2>x1 && y2>y1)) || ((x2>x1 && y2 <y1 )) || ((y2>y1 && x1>x2 )) || ((y1>y2 && x1>x2))  ) {
-            if (Math.sqrt( (x2-x1)*(x2-x1) + (y2-y1)*(y2-y1)) < Math.sqrt(width*width + height*height)) {
-                return true;
-            }else
-                return false;
-        }
-        else if (((x2>x1) && (y1==y2)) || ((x1<x2) && (y1==y2)) ){
-            if (Math.sqrt( (x2-x1)*(x2-x1) + (y2-y1)*(y2-y1)) < width) {
-                return true;
-            }
-            else
-                return false;
-        }
-        else if (((x2==x1) && (y1>y2)) || ((x1==x2) && (y1<y2)))
-            if (Math.sqrt( (x2-x1)*(x2-x1) + (y2-y1)*(y2-y1)) < height) {
-                return true;
-            }
-            else
-                return false;
-        else
-            return false;
+        // cach 2
+        //hcn1 = this , hcn2 = other
+
+        return other.right() >= this.left() && other.left() <= this.right()
+                && other.bot() >= this.top() && other.top() <= this.bot();
+
+
+
+//        double x1 = this.position.x;
+//        double y1 = this.position.y;
+//        double x2 = other.position.x;
+//        double y2 = other.position.y;
+//
+//        if ( ((x2>x1 && y2>y1)) || ((x2>x1 && y2 <y1 )) || ((y2>y1 && x1>x2 )) || ((y1>y2 && x1>x2))  ) {
+//            if (Math.sqrt( (x2-x1)*(x2-x1) + (y2-y1)*(y2-y1)) < Math.sqrt(width*width + height*height)) {
+//                return true;
+//            }else
+//                return false;
+//        }
+//        else if (((x2>x1) && (y1==y2)) || ((x1<x2) && (y1==y2)) ){
+//            if (Math.sqrt( (x2-x1)*(x2-x1) + (y2-y1)*(y2-y1)) < width) {
+//                return true;
+//            }
+//            else
+//                return false;
+//        }
+//        else if (((x2==x1) && (y1>y2)) || ((x1==x2) && (y1<y2)))
+//            if (Math.sqrt( (x2-x1)*(x2-x1) + (y2-y1)*(y2-y1)) < height) {
+//                return true;
+//            }
+//            else
+//                return false;
+//        else
+//            return false;
+//
+
+
+
     }
+
+
 
 
 

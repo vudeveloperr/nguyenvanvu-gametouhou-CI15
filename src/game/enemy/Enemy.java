@@ -1,19 +1,27 @@
 package game.enemy;
 
 import game.*;
+import game.physics.BoxCollider;
 import game.player.Player;
+import game.renderer.AnimationRenderer;
 import tklibs.SpriteUtils;
+
+import java.awt.*;
 
 public class Enemy extends GameObject {
     int fireCount ;
+    int hp;
 
     public Enemy(){
-        image = SpriteUtils.loadImage("assets/images/enemies/level0/pink/0.png");
+//        images = SpriteUtils.loadImage("assets/images/enemies/level0/pink/0.png");
+        renderer = new AnimationRenderer("assets/images/enemies/level0/pink",15);
         position.set(-50 , -50);
         velocity.set(2,2);
         velocity.setAngle(Math.PI /18);
         velocity.setLength(Settings.ENERMY_SPEED);
         fireCount = 0;
+        collider = new BoxCollider(this,28,28);
+        hp = 10;
     }
 
 //    public void render(Graphics g){
@@ -29,11 +37,11 @@ public class Enemy extends GameObject {
 
     private void enemyFire() {
         fireCount++;
-        if (fireCount>10) {
+        if (fireCount>20) {
                 // tao ta vien dan
                 //EnemyBullet bullet1 = new EnemyBullet();
                 EnemyBullet bullet1 = GameObject.recycle(EnemyBullet.class);
-                bullet1.loadImage();
+                //bullet1.loadImage();
                 bullet1.position.set(this.position);
 
                 //bullet1.velocity.setAngle(Math.PI * 0.5);
@@ -48,11 +56,11 @@ public class Enemy extends GameObject {
                 bullet1.velocity.set(enemyToPlayer.x,enemyToPlayer.y);
 
 
-//                EnemyBullet bullet2 = new EnemyBullet();
-//                bullet2.loadImage();
-//                bullet2.position.set(this.position.x, this.position.y);
-//                bullet2.velocity.setAngle(Math.PI * 0.6);
-//
+                EnemyBullet bullet2 = GameObject.recycle(EnemyBullet.class);
+                //bullet2.loadImage();
+                bullet2.position.set(this.position);
+                bullet2.velocity.setAngle(Math.PI * 0.6);
+
 //                EnemyBullet bullet3 = new EnemyBullet();
 //                bullet3.loadImage();
 //                bullet3.position.set(this.position.x, this.position.y);
@@ -159,17 +167,48 @@ public class Enemy extends GameObject {
 
 
     private void changeVelocity() {
-        if(position.x > Settings.BACKGROUND_WIDTH - Settings.ENERMY_WIDTH && velocity.x>0){
+
+        double offsetWidth = anchor.x * Settings.ENERMY_WIDTH;
+        double offsetHeight = anchor.x * Settings.ENERMY_HEIGHT;
+
+        if(position.x > Settings.BACKGROUND_WIDTH - offsetWidth && velocity.x>0){
             velocity.set(-velocity.x,velocity.y);
         }
-        if (position.x < 0 && velocity.x<0){
+        if (position.x < offsetWidth && velocity.x<0){
             velocity.set(-velocity.x,velocity.y);
         }
-        if (position.y > Settings.GAME_HEIGHT - Settings.ENERMY_HEIGHT && velocity.y > 0){
+        if (position.y > Settings.GAME_HEIGHT - offsetHeight && velocity.y > 0){
             velocity.set(velocity.x,-velocity.y);
         }
-        if (position.y < 0 && velocity.y<0 ){
+        if (position.y < offsetHeight && velocity.y<0 ){
             velocity.set(velocity.x,-velocity.y);
         }
     }
+
+    public void takeDamage(int damage){
+        hp -= damage;
+        if (hp <= 0){
+            this.deactive();
+            hp = 0;
+        }
+    }
+    static Font font = new Font("Verdana",Font.BOLD,40);
+
+    @Override
+    public void render(Graphics g){
+        super.render(g);
+        g.setColor(Color.green);
+        g.drawRect((int) collider.left() ,
+                (int)collider.top() ,
+                (int)collider.width,
+                (int)collider.height);
+
+        g.setFont(font);
+        g.drawString(hp+"",
+                (int)collider.left(),
+                (int)collider.top());
+
+    }
+
+
 }

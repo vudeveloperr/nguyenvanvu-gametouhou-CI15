@@ -3,6 +3,7 @@ package game.player;
 import game.GameObject;
 import game.GameWindow;
 import game.Settings;
+import game.renderer.AnimationRenderer;
 import tklibs.SpriteUtils;
 
 import java.awt.*;
@@ -17,17 +18,8 @@ public class Player extends GameObject {
     Random random;
 
     public Player(){
-        //image = SpriteUtils.loadImage("assets/images/players/straight/3.png");
 
-        images = new ArrayList<>();
-        images.add(SpriteUtils.loadImage("assets/images/players/straight/0.png"));
-        images.add(SpriteUtils.loadImage("assets/images/players/straight/1.png"));
-        images.add(SpriteUtils.loadImage("assets/images/players/straight/2.png"));
-        images.add(SpriteUtils.loadImage("assets/images/players/straight/3.png"));
-        images.add(SpriteUtils.loadImage("assets/images/players/straight/4.png"));
-        images.add(SpriteUtils.loadImage("assets/images/players/straight/5.png"));
-        images.add(SpriteUtils.loadImage("assets/images/players/straight/6.png"));
-
+        renderer = new AnimationRenderer("assets/images/players/straight",10);
         position.set(200,500);
         fireCount =0;
         bulletType = 1;
@@ -51,15 +43,19 @@ public class Player extends GameObject {
 
         if (GameWindow.isUpPress ) {
             vY-=3;
+            renderer = new AnimationRenderer("assets/images/players/straight",10);
         }
         if (GameWindow.isDownPress ) {
             vY+=3;
+            renderer = new AnimationRenderer("assets/images/players/straight",10);
         }
         if (GameWindow.isLeftPress ) {
             vX-=3;
+            renderer = new AnimationRenderer("assets/images/players/left",10);
         }
         if (GameWindow.isRightPress ) {
             vX+=3;
+            renderer = new AnimationRenderer("assets/images/players/right",10);
         }
 
         this.velocity.set(vX,vY);
@@ -67,27 +63,30 @@ public class Player extends GameObject {
     }
 
     private void playerlimit() {
-        if (position.y < 0) {// limit player
-            position.y = 0;
+        double offsetWidth = anchor.x * Settings.PLAYER_WIDTH;
+        double offsetHeight = anchor.y * Settings.PLAYER_HEIGHT;
+
+        if (position.y < offsetHeight) {// limit player
+            position.y = offsetHeight;
         }
-        if (position.y > Settings.GAME_HEIGHT - Settings.PLAYER_HEIGHT) {
-            position.y = Settings.GAME_HEIGHT - Settings.PLAYER_HEIGHT;
+        if (position.y > Settings.GAME_HEIGHT - offsetHeight ) {
+            position.y = Settings.GAME_HEIGHT - offsetHeight ;
         }
-        if (position.x < 0) {
-            position.x = 0;
+        if (position.x < offsetWidth) {
+            position.x = offsetWidth;
         }
-        if (position.x > Settings.BACKGROUND_WIDTH - Settings.PLAYER_WIDTH) {
-            position.x = Settings.BACKGROUND_WIDTH - Settings.PLAYER_WIDTH;
+        if (position.x > Settings.BACKGROUND_WIDTH - offsetWidth) {
+            position.x = Settings.BACKGROUND_WIDTH - offsetWidth;
         }
     }
 
     private void playerFire() {
-        fireCount+=4;
+        fireCount+=2;
         if (GameWindow.isFirePress && fireCount > Settings.DURATION_FIRE_BULLET){
             for (int i = 0; i < 1; i++) {
                 //PlayerBullet bullet = new PlayerBullet();
                 PlayerBullet bullet = GameObject.recycle(PlayerBullet.class);
-                bullet.loadImageByType(bulletType);
+                //bullet.loadImageByType(bulletType);
                 bullet.position.set(this.position.x, this.position.y);
                 bullet.velocity.setAngle(-Math.PI * 0.5);
             }

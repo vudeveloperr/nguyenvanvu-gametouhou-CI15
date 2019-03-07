@@ -11,55 +11,10 @@ import java.util.ArrayList;
  * Created by huynq on 7/4/17.
  */
 public class Program {
-//    public static double[] equation2(double a , double b, double c) {
-//        double[] result = new double[2];
-//        double d;
-//        double x1 ,  x2 ,  y;
-//        d = b*b - (4*a*c);
-//        if (d<0){
-//            System.out.println("vo nghiem!!");
-//            result = null;
-//        }
-//        else if (d==0){
-//            y = -b/2*a;
-//            System.out.println(y);
-//        }
-//        else {
-//            double s = Math.sqrt(d);
-//            x1 = (-b+s)/(2*a);
-//            x2 = (-b-s)/(2*a);
-//            System.out.println(x1);
-//            System.out.println(x2);
-//        }
-//
-//        return result;
-//    }
-/*
-*   if(a==0){
-*       if(b==0){
-*       }
-*       else{
-*       }
-*   }
-*   else
-*   {
-*       result
-*   }
-*
-* */
-    public static void main(String[] args) {
-//        double[] result = equation2(1,2,3);
-//        if (result == null){
-//            System.out.println("vo nghiem ");
-//        }
-//        else{
-//            System.out.println("x1 : " + result[0]);
-//            System.out.println("x2 : "+ result[1]);
-//        }
 
+    public static void main(String[] args) {
 
         GameWindow window = new GameWindow();
-       // window.setSize(800, 600); // tao kich thuoc
         window.setResizable(false); // co dinh kich thuoc
         window.setTitle("Game Touhou");
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
