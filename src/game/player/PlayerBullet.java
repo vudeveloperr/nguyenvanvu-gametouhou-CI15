@@ -12,15 +12,12 @@ import java.awt.image.BufferedImage;
 
 public class PlayerBullet extends GameObject {
 
-//    static BufferedImage type1Image = SpriteUtils.loadImage("assets/images/enemies/bullets/blue.png");
-//    static BufferedImage type2Image = SpriteUtils.loadImage("assets/images/enemies/bullets/cyan.png");
-//    static BufferedImage type3Image = SpriteUtils.loadImage("assets/images/enemies/bullets/pink.png");
 
 
     public int damage;
 
     public PlayerBullet(){
-        renderer = new AnimationRenderer("assets/images/sphere",8);
+        renderer = new AnimationRenderer("assets/images/player-bullets/a",1);
         velocity.set(5,5);
         velocity.setLength(Settings.PLAYER_BULLET_SPEED);
         collider = new BoxCollider(this,10,10);
@@ -32,7 +29,6 @@ public class PlayerBullet extends GameObject {
         super.run();
         deactiveIfNeeded();
         checkIntersects();
-
     }
 
     private void checkIntersects() {

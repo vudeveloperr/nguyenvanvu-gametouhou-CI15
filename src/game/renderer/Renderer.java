@@ -5,7 +5,7 @@ import game.GameObject;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Renderer {
+public abstract class Renderer {
     public static void drawImage(BufferedImage image ,Graphics g,GameObject master){
         g.drawImage(image,
                 (int)(master.position.x - master.anchor.x * image.getWidth()),
@@ -13,7 +13,6 @@ public class Renderer {
                 null );
     }
 
-    public void render(Graphics g,GameObject master){
+    public abstract void render(Graphics g,GameObject master);
 
-    }
 }

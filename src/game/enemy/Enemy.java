@@ -21,7 +21,7 @@ public class Enemy extends GameObject {
         velocity.setLength(Settings.ENERMY_SPEED);
         fireCount = 0;
         collider = new BoxCollider(this,28,28);
-        hp = 10;
+        hp = 3;
     }
 
 //    public void render(Graphics g){
@@ -37,7 +37,7 @@ public class Enemy extends GameObject {
 
     private void enemyFire() {
         fireCount++;
-        if (fireCount>20) {
+        if (fireCount>30) {
                 // tao ta vien dan
                 //EnemyBullet bullet1 = new EnemyBullet();
                 EnemyBullet bullet1 = GameObject.recycle(EnemyBullet.class);
@@ -46,14 +46,14 @@ public class Enemy extends GameObject {
 
                 //bullet1.velocity.setAngle(Math.PI * 0.5);
 
-                //2 . tinh toan vector tro tu enemy den player
-                Player player = GameObject.find(Player.class);
-                Vector2D enemyToPlayer = player.position.clone();
-                enemyToPlayer.minus(this.position);
-                enemyToPlayer.setLength(4);
-
-                // dat bullet velocuty = vector vua tinh toan
-                bullet1.velocity.set(enemyToPlayer.x,enemyToPlayer.y);
+//                //2 . tinh toan vector tro tu enemy den player
+//                Player player = GameObject.find(Player.class);
+//                Vector2D enemyToPlayer = player.position.clone();
+//                enemyToPlayer.minus(this.position);
+//                enemyToPlayer.setLength(4);
+//
+//                // dat bullet velocuty = vector vua tinh toan
+//                bullet1.velocity.set(enemyToPlayer.x,enemyToPlayer.y);
 
 
                 EnemyBullet bullet2 = GameObject.recycle(EnemyBullet.class);
@@ -210,5 +210,12 @@ public class Enemy extends GameObject {
 
     }
 
+    @Override
+    public void reset() {
+        super.reset(); // active = true
+        hp = 3 ;
+        position.set(-50,-50);
+        velocity.setAngle(Math.PI/18);
 
+    }
 }

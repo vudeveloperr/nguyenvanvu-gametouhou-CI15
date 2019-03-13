@@ -3,6 +3,7 @@ package game.player;
 import game.GameObject;
 import game.GameWindow;
 import game.Settings;
+import game.physics.BoxCollider;
 import game.renderer.AnimationRenderer;
 import tklibs.SpriteUtils;
 
@@ -12,20 +13,25 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Player extends GameObject {
+    int hp;
     int fireCount;
     int bulletType;
     int changeBulletCount;
     Random random;
+    boolean immune;
 
     public Player(){
+        collider = new BoxCollider(this,15,15);
 
-        renderer = new AnimationRenderer("assets/images/players/straight",10);
+        renderer = new PlayerRenderer();
+        //renderer = new AnimationRenderer("assets/images/players/straight",10);
         position.set(200,500);
         fireCount =0;
         bulletType = 1;
         changeBulletCount = 0;
         random = new Random();
-
+        hp =5 ;
+        immune = false;
     }
 
     @Override
@@ -35,6 +41,19 @@ public class Player extends GameObject {
         playerlimit();
         playerFire();
         changeBulletType();
+        checkImmune();
+    }
+
+
+    int immuneCount ;
+    private void checkImmune() {
+        if (immune){
+            immuneCount++;
+            if (immuneCount > 60){
+                immune = false;
+                immuneCount = 0;
+            }
+        }
     }
 
     private void playerMove() {
@@ -43,19 +62,15 @@ public class Player extends GameObject {
 
         if (GameWindow.isUpPress ) {
             vY-=3;
-            renderer = new AnimationRenderer("assets/images/players/straight",10);
         }
         if (GameWindow.isDownPress ) {
             vY+=3;
-            renderer = new AnimationRenderer("assets/images/players/straight",10);
         }
         if (GameWindow.isLeftPress ) {
             vX-=3;
-            renderer = new AnimationRenderer("assets/images/players/left",10);
         }
         if (GameWindow.isRightPress ) {
             vX+=3;
-            renderer = new AnimationRenderer("assets/images/players/right",10);
         }
 
         this.velocity.set(vX,vY);
@@ -112,6 +127,18 @@ public class Player extends GameObject {
         }
     }
 
+    public void takeDamage(int damage){
+        if (immune){
+            return;
+        }
+        hp -= damage;
+        if (hp<=0){
+            hp =0;
+            deactive();
+        }else {
+            immune = true;
+        }
+    }
 
 
 
